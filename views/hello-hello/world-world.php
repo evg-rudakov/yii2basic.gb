@@ -8,7 +8,7 @@ use yii\widgets\ActiveForm;
 /* @var $form ActiveForm */
 ?>
 <div class="hello-hello-world-world">
-    <?=Yii::$app->comp->show('надеюсь заработает')?>
+    <?= Yii::$app->comp->show('надеюсь заработает')?>
     <?php $form = ActiveForm::begin(); ?>
 
         <?= $form->field($model, 'name') ?>
