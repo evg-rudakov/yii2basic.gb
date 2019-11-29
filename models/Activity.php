@@ -11,4 +11,9 @@ class Activity extends \yii\base\Model
 
     public $cycle;
     public $main;
+
+    public static function getObject($id)
+    {
+        return \app\models\ActivityDao::getById($id);
+    }
 }
