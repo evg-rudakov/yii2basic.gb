@@ -58,6 +58,9 @@ $config = [
         'comp' => [
             'class' => \app\components\Comp::class,
         ],
+        'authManager' => [
+            'class' => \yii\rbac\DbManager::class
+        ]
     ],
 
     'params' => $params,
