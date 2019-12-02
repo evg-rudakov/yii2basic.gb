@@ -20,6 +20,7 @@ use yii\web\IdentityInterface;
  * @property integer $status
  * @property integer $created_at
  * @property integer $updated_at
+ * @property Activity[] $activities
  * @property string $password write-only password
  */
 class User extends ActiveRecord implements IdentityInterface
@@ -134,6 +135,14 @@ class User extends ActiveRecord implements IdentityInterface
     public function generateAuthKey()
     {
         $this->auth_key = Yii::$app->security->generateRandomString();
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getActivities()
+    {
+        return $this->hasMany(Activity::class, ['author_id' => 'id']);
     }
 
 }

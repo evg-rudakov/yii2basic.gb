@@ -166,7 +166,6 @@ class SiteController extends Controller
         if (!Yii::$app->user->can($adminRole->name)) {
             \Yii::$app->authManager->assign($adminRole, $user->id);
         }
-
     }
 
 }
