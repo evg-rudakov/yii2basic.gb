@@ -18,15 +18,10 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'finished_at')->textInput() ?>
 
-    <?= $form->field($model, 'user_id')->textInput() ?>
 
-    <?= $form->field($model, 'main')->textInput() ?>
+    <?= $form->field($model, 'main')->checkbox() ?>
 
-    <?= $form->field($model, 'cycle')->textInput() ?>
-
-    <?= $form->field($model, 'created_at')->textInput() ?>
-
-    <?= $form->field($model, 'updated_at')->textInput() ?>
+    <?= $form->field($model, 'cycle')->checkbox() ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

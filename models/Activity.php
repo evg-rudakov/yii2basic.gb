@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\behaviors\TimestampBehavior;
 
 /**
  * This is the model class for table "activity".
@@ -31,6 +32,18 @@ class Activity extends \yii\db\ActiveRecord
     {
         return 'activity';
     }
+    public function behaviors()
+    {
+        return [
+            [
+                'class' => TimestampBehavior::class,
+                'createdAtAttribute' => 'created_at',
+                'updatedAtAttribute' => 'updated_at',
+
+                'value' => time()
+            ]
+        ];
+    }
 
     /**
      * {@inheritdoc}
@@ -49,13 +62,13 @@ class Activity extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id' => 'ID',
-            'title' => 'Title',
-            'started_at' => 'Started At',
+            'id' => 'id',
+            'title' => 'Название',
+            'started_at' => 'Дата и время начала',
             'finished_at' => 'Finished At',
             'author_id' => 'author ID',
-            'main' => 'Main',
-            'cycle' => 'Cycle',
+            'main' => 'Блокируеще?',
+            'cycle' => 'Повторятеся?',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];
