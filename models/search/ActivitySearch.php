@@ -51,8 +51,13 @@ class ActivitySearch extends Activity
      */
     public function search($params)
     {
-         $query = Activity::find()->joinWith('users')
-             ->andWhere(['user.id'=>\Yii::$app->user->identity->id]);
+         $query = Activity::find()->joinWith('users');
+
+        if (!\Yii::$app->user->isGuest) {
+            $query->andWhere(['user.id' => \Yii::$app->user->identity->id]);
+        } else {
+//            $query->where('0=1');
+        }
 
         // add conditions that should always apply here
 

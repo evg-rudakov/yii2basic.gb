@@ -26,8 +26,7 @@ class CacheBehavior extends Behavior
 
     public function deleteCache()
     {
-        $a=1;
         \Yii::$app->cache->delete(get_class($this->owner) . "_" . $this->owner->getPrimaryKey());
-
+        //реализовать стирание кеша для calenarSearch()
     }
 }
