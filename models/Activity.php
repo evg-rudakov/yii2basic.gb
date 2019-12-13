@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use app\components\behaviors\CacheBehavior;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 
@@ -41,6 +42,9 @@ class Activity extends \yii\db\ActiveRecord
                 'updatedAtAttribute' => 'updated_at',
 
                 'value' => time()
+            ],
+            CacheBehavior::class => [
+                'class' => CacheBehavior::class,
             ]
         ];
     }
@@ -92,5 +96,16 @@ class Activity extends \yii\db\ActiveRecord
         return  $this->hasMany(User::class, ['id'=>'user_id'])
             ->via('calendar');
 //        return $this->hasMany(User::class, ['id' => 'user_id'])->viaTable('calendar', ['user_id' => 'id']);
+    }
+
+    public static function findOne($condition)
+    {
+        if (Yii::$app->cache->exists(self::class . '_' . $condition) === false) {
+            $result = parent::findOne($condition);
+            Yii::$app->cache->set(self::class . '_' . $condition, $result);
+            return $result;
+        } else {
+            return Yii::$app->cache->get(self::class . '_' . $condition);
+        }
     }
 }

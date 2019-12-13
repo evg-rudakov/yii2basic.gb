@@ -32,3 +32,10 @@ services:
       MYSQL_PASSWORD: mysqluser
     volumes:
     - ./docker/database:/var/lib/mysql
+
+  memcached:
+    container_name: memcached_geekbrains_test1
+    image: sameersbn/memcached:1.5.6
+    ports:
+    - 11212:11211
+    restart: always
