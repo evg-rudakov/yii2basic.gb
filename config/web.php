@@ -12,6 +12,9 @@ $config = [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
     ],
+    'defaultRoute' => 'calendar/index',
+//    'catchAll' => ['site/about'],
+
     'modules' => [
         'admin' => [
             'class' => \app\modules\admin\Module::class
@@ -67,6 +70,8 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
+                '<action:(about|contact|login|index|contact)>' => 'site/<action>',
+                'calendar/<id:\d+>'=>'calendar/view'
             ],
         ],
         'comp' => [
@@ -74,7 +79,9 @@ $config = [
         ],
         'authManager' => [
             'class' => \yii\rbac\DbManager::class
-        ]
+        ],
+        'assetManager'=> [
+        ],
     ],
 
     'params' => $params,
